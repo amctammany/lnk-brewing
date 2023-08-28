@@ -26,6 +26,7 @@ export default async function RecipesIndexPage({
 
   return (
     <Box>
+      RecipeList for {params.username}
       <List>
         {recipes.map((recipe) => (
           <ListItem key={recipe.id}>
@@ -33,8 +34,6 @@ export default async function RecipesIndexPage({
           </ListItem>
         ))}
       </List>
-      RecipeList
-      <Link href="/hops">Hops</Link>
     </Box>
   );
 }

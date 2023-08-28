@@ -35,11 +35,7 @@ export default function RootLayout({
       </head>
       <body className={inter.variable}>
         <Nav />
-        <Box
-          component="main"
-          sx={{ p: 3 }}
-          className="relative flex min-h-screen flex-col items-center justify-center"
-        >
+        <Box component="main" sx={{ p: 3 }}>
           {children}
         </Box>
       </body>

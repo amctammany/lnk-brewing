@@ -23,7 +23,7 @@ const Item = ({ children }: { children: React.ReactNode }) => {
     </Typography>
   );
 };
-//const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 export default async function IngredientsPage() {
   //const hops = await prisma.hop.findMany();
 

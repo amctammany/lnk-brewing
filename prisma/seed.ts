@@ -5,6 +5,7 @@ import { PrismaClient } from "@prisma/client/edge";
 const prisma = new PrismaClient();
 
 async function main() {
+  console.log(prisma);
   await prisma.hop.deleteMany();
   await prisma.recipe.deleteMany();
   await prisma.user.deleteMany();
@@ -28,7 +29,7 @@ async function main() {
       name: "Recipe1",
       description: "Desc",
       authorId: user.id,
-      slug: "Recipe1",
+      slug: "recipe1",
     },
   });
   await prisma.recipe.create({
@@ -36,7 +37,7 @@ async function main() {
       name: "Recipe2",
       description: "Desc",
       authorId: user.id,
-      slug: "Recipe2",
+      slug: "recipe2",
     },
   });
   await prisma.recipe.create({

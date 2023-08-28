@@ -1,5 +1,14 @@
 import { PrismaClient } from "@prisma/client/edge";
-import { Box, List, ListItem } from "@mui/material";
+import {
+  Box,
+  List,
+  ListItemIcon,
+  ListItemText,
+  ListItemButton,
+  Avatar,
+  ListItemAvatar,
+} from "@mui/material";
+import ImageIcon from "@mui/icons-material/Image";
 import Link from "next/link";
 
 import { Metadata } from "next";
@@ -16,12 +25,24 @@ export default async function RecipesIndexPage() {
   });
 
   return (
-    <Box>
-      <List>
+    <Box sx={{ flexGrow: 1 }}>
+      <List sx={{ bgcolor: "background.paper" }}>
         {recipes.map((recipe) => (
-          <ListItem key={recipe.id}>
-            {recipe.name} - {recipe.author.name}
-          </ListItem>
+          <ListItemButton
+            href={`/recipes/${recipe.author.username}/${recipe.slug}`}
+            component={Link}
+            key={recipe.id}
+          >
+            <ListItemAvatar>
+              <Avatar>
+                <ImageIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={recipe.name}
+              secondary={recipe.author.name}
+            />
+          </ListItemButton>
         ))}
       </List>
       Recipes
