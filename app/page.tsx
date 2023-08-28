@@ -7,11 +7,11 @@ import ExpandingArrow from "@/components/expanding-arrow";
 
 export const preferredRegion = "home";
 export const dynamic = "force-dynamic";
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client/edge";
 import { Box } from "@mui/material";
 
+const prisma = new PrismaClient();
 export default async function Home() {
-  const prisma = new PrismaClient();
   const hops = await prisma.hop.findMany();
 
   console.log(hops);
