@@ -39,7 +39,7 @@ export default async function Table() {
         <RefreshButton />
       </div>
       <div className="divide-y divide-gray-900/5">
-        {users.map((user) => (
+        {users.map((user: any) => (
           <div
             key={user.name}
             className="flex items-center justify-between py-3"
