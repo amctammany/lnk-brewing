@@ -11,7 +11,6 @@ const prisma = new PrismaClient();
 export default async function HopsIndexPage() {
   const hops = await prisma.hop.findMany();
 
-  console.log(hops);
   return (
     <Box>
       Hops

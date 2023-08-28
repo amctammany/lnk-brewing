@@ -24,7 +24,6 @@ export default async function RecipesIndexPage({
     },
   });
 
-  console.log(recipes);
   return (
     <Box>
       <List>

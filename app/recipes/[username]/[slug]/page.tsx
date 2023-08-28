@@ -20,7 +20,6 @@ export default async function RecipeDisplayPage({
     },
   });
 
-  console.log(recipe);
   return (
     <Box>
       Recipe

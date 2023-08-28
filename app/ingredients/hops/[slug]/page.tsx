@@ -17,7 +17,6 @@ export default async function HopDisplayPage({
     where: { slug: { equals: params.slug } },
   });
 
-  console.log(hop);
   return (
     <Box>
       HopDisplay
