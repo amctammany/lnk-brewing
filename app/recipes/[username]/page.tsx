@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client/edge";
-import { Box } from "@mui/material";
+import { Box, List, ListItem } from "@mui/material";
 import Link from "next/link";
 
 import { Metadata } from "next";
@@ -14,6 +14,9 @@ export default async function RecipesIndexPage({
   params: { username: string };
 }) {
   const recipes = await prisma.recipe.findMany({
+    include: {
+      author: true,
+    },
     where: {
       author: {
         username: { equals: params.username },
@@ -24,6 +27,13 @@ export default async function RecipesIndexPage({
   console.log(recipes);
   return (
     <Box>
+      <List>
+        {recipes.map((recipe) => (
+          <ListItem key={recipe.id}>
+            {recipe.name} - {recipe.author.name}
+          </ListItem>
+        ))}
+      </List>
       RecipeList
       <Link href="/hops">Hops</Link>
     </Box>

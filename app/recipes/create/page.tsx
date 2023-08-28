@@ -14,7 +14,7 @@ export default async function RecipeCreatePage() {
   //console.log(recipes);
   return (
     <Box>
-      Ingredients
+      Create Recipe
       <Link href="/recipes">Recipes</Link>
     </Box>
   );
