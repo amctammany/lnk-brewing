@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:seed": "prisma db seed",
-    "db:generate": "prisma generate",
+    "db:generate": "prisma generate --data-proxy",
     "db:migrate": "prisma migrate dev --name"
   },
   "dependencies": {
