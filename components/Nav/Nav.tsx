@@ -45,7 +45,9 @@ export function Nav() {
           </Box>
           <Box sx={{ ml: 2, flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {navItems.map((item) => (
-              <NavLink key={item}>{item}</NavLink>
+              <NavLink href={`/${item}`} key={item}>
+                {item}
+              </NavLink>
             ))}
           </Box>
           <Box sx={{ flexGrow: 0 }}>
