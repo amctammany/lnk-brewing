@@ -18,15 +18,19 @@ model User {
   email    String   @unique
   name     String?
   Recipe   Recipe[]
+
+  createdAt DateTime @default(now())
 }
 
 model Recipe {
-  id          Int    @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   name        String
   slug        String
   description String
   authorId    Int
-  author      User   @relation(fields: [authorId], references: [id])
+  author      User     @relation(fields: [authorId], references: [id])
+  updatedAt   DateTime @default(now())
+  createdAt   DateTime @default(now())
 }
 
 model Hop {
