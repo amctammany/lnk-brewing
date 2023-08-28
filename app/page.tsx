@@ -8,13 +8,22 @@ import ExpandingArrow from "@/components/expanding-arrow";
 export const preferredRegion = "home";
 export const dynamic = "force-dynamic";
 import { PrismaClient } from "@prisma/client";
+import { Box } from "@mui/material";
 
-const prisma = new PrismaClient();
 export default async function Home() {
-  const hops = await prisma.hop.findMany({});
+  const prisma = new PrismaClient();
+  const hops = await prisma.hop.findMany();
 
   console.log(hops);
   return (
+    <Box>
+      HomePage
+      <Link href="/hops">ToStuff</Link>
+    </Box>
+  );
+}
+/**
+(
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       <Link
         href="https://vercel.com/templates/next.js/postgres-kysely"
@@ -99,5 +108,5 @@ export default async function Home() {
         </Link>
       </div>
     </main>
-  );
-}
+  )
+  */
