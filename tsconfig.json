@@ -30,5 +30,11 @@
     ".next/types/**/*.ts",
     "lib/seed.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+
 }

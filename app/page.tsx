@@ -1,14 +1,19 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { Suspense } from 'react'
-import Table from '@/components/table'
-import TablePlaceholder from '@/components/table-placeholder'
-import ExpandingArrow from '@/components/expanding-arrow'
+import Image from "next/image";
+import Link from "next/link";
+import { Suspense } from "react";
+import Table from "@/components/table";
+import TablePlaceholder from "@/components/table-placeholder";
+import ExpandingArrow from "@/components/expanding-arrow";
 
-export const preferredRegion = 'home'
-export const dynamic = 'force-dynamic'
+export const preferredRegion = "home";
+export const dynamic = "force-dynamic";
+import { PrismaClient } from "@prisma/client";
 
-export default function Home() {
+const prisma = new PrismaClient();
+export default async function Home() {
+  const hops = await prisma.hop.findMany({});
+
+  console.log(hops);
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center">
       <Link
@@ -30,15 +35,15 @@ export default function Home() {
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
         >
           Vercel Postgres
-        </Link>{' '}
-        demo with{' '}
+        </Link>{" "}
+        demo with{" "}
         <Link
           href="https://kysely.dev/"
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
         >
           Kysely
-        </Link>{' '}
-        as the ORM. <br /> Built with{' '}
+        </Link>{" "}
+        as the ORM. <br /> Built with{" "}
         <Link
           href="https://nextjs.org/docs"
           className="font-medium underline underline-offset-4 hover:text-black transition-colors"
@@ -94,5 +99,5 @@ export default function Home() {
         </Link>
       </div>
     </main>
-  )
+  );
 }
