@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "postinstall": "pnpm run db:migrate",
     "db:seed": "prisma db seed",
     "db:generate": "prisma generate --data-proxy",
     "db:migrate": "prisma migrate dev --name"
