@@ -23,7 +23,7 @@ export default async function RecipeEditPage({
   console.log(recipe);
 
   return (
-    <Box>
+    <Box sx={{ flexGrow: 1 }}>
       RecipeEditPage
       <Link href="edit">Edit</Link>
     </Box>

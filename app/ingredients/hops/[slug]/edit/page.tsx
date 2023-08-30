@@ -37,7 +37,7 @@ export default async function HopEditPage({
     return <Box>Bad Hop</Box>;
   }
   return (
-    <Box>
+    <Box sx={{ flexGrow: 1 }}>
       HopEditPage
       <HopForm hop={hop} action={update}></HopForm>
       <Link href="edit">EditHop</Link>

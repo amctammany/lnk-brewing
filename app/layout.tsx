@@ -6,7 +6,7 @@ import "@fontsource/roboto/700.css";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { Nav } from "@/components";
-import { Box, Button } from "@mui/material";
+import { Box, Button, CssBaseline } from "@mui/material";
 
 export const metadata = {
   title: "Vercel Postgres Demo with Kysely",
@@ -34,6 +34,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <CssBaseline />
         <Nav />
         <Box component="main" sx={{ p: 3 }}>
           {children}
