@@ -1,8 +1,8 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import { StyleCategory } from "@prisma/client";
-import hops from "./hops.json";
-import styles from "./styles.json";
+import hops from "../../data/hops.json";
+import styles from "../../data/styles.json";
 
 export async function GET(request: Request) {
   await prisma.hop.deleteMany();
@@ -52,8 +52,8 @@ export async function GET(request: Request) {
     ],
   });
   await prisma.style.createMany({
-    data: styles.map(({ category, ...style }) => ({
-      category: StyleCategory[category.toUpperCase()],
+    data: styles.map(({ category, history, ...style }) => ({
+      category: StyleCategory[category.toUpperCase() as StyleCategory],
       ...style,
     })),
   });

@@ -72,11 +72,11 @@ model Style {
   category      StyleCategory
   subcategoryId String
   identifier    String
-  aroma         String
-  appearance    String
-  flavor        String
-  mouthfeel     String
-  comments      String
+  aroma         String?
+  appearance    String?
+  flavor        String?
+  mouthfeel     String?
+  comments      String?
   history       String?
   ingredients   String?
   comparison    String?

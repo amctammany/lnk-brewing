@@ -13,7 +13,7 @@ import AdbIcon from "@mui/icons-material/Adb";
 import { NavLink } from "./NavLink";
 import Link from "next/link";
 
-const navItems = ["Recipes", "Ingredients", "Data"];
+const navItems = ["Recipes", "Ingredients", "Styles"];
 export function Nav() {
   return (
     <AppBar position="static">

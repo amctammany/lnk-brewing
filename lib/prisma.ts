@@ -24,6 +24,15 @@ const prismaClientSingleton = () => {
         },
       },
 
+      style: {
+        urlString: {
+          needs: { slug: true },
+          compute(style) {
+            return `/styles/${style.slug}`;
+          },
+        },
+      },
+
       hop: {
         urlString: {
           needs: { slug: true },
