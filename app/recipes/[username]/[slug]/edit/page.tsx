@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/lib/prisma";
 import { Box } from "@mui/material";
 import Link from "next/link";
 
@@ -7,7 +7,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "LNK: Recipe Edit",
 };
-const prisma = new PrismaClient();
+//const prisma = new PrismaClient();
 export default async function RecipeEditPage({
   params,
 }: {

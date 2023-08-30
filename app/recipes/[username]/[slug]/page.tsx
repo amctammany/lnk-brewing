@@ -1,14 +1,13 @@
-import { PrismaClient } from "@prisma/client";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 
 //export const dynamic = "force-dynamic";
 import { Metadata } from "next";
+import prisma from "@/lib/prisma";
 
 export const metadata: Metadata = {
   title: "LNK: Recipe Display",
 };
-const prisma = new PrismaClient();
 export default async function RecipeDisplayPage({
   params,
 }: {

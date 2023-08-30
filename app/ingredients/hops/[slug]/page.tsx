@@ -1,14 +1,15 @@
-import { PrismaClient } from "@prisma/client";
+//import { PrismaClient } from "@prisma/client";
 import { Box } from "@mui/material";
 import Link from "next/link";
 
 import { Metadata } from "next";
 import { HopDisplay } from "../_components/HopDisplay";
+import prisma from "@/lib/prisma";
 
 export const metadata: Metadata = {
   title: "LNK: Hop Display",
 };
-const prisma = new PrismaClient();
+//const prisma = new PrismaClient();
 export default async function HopDisplayPage({
   params,
 }: {

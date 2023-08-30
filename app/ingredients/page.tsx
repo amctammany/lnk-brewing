@@ -1,6 +1,5 @@
 export const preferredRegion = "home";
 //export const dynamic = "force-dynamic";
-import { PrismaClient } from "@prisma/client";
 import { Box, Paper, Typography } from "@mui/material";
 import Link from "next/link";
 
@@ -23,7 +22,6 @@ const Item = ({ children }: { children: React.ReactNode }) => {
     </Typography>
   );
 };
-const prisma = new PrismaClient();
 export default async function IngredientsPage() {
   //const hops = await prisma.hop.findMany();
 

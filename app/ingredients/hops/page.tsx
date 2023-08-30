@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+//import { PrismaClient } from "@prisma/client";
 import {
   Avatar,
   Box,
@@ -11,11 +11,12 @@ import ImageIcon from "@mui/icons-material/Image";
 import Link from "next/link";
 
 import { Metadata } from "next";
+import prisma from "@/lib/prisma";
 
 export const metadata: Metadata = {
   title: "LNK: Hops",
 };
-const prisma = new PrismaClient();
+//const prisma = new PrismaClient();
 export default async function HopsIndexPage() {
   const hops = await prisma.hop.findMany();
 

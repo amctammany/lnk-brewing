@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import {
   Box,
   List,
@@ -12,11 +11,11 @@ import ImageIcon from "@mui/icons-material/Image";
 import Link from "next/link";
 
 import { Metadata } from "next";
+import prisma from "@/lib/prisma";
 
 export const metadata: Metadata = {
   title: "LNK: Recipes",
 };
-const prisma = new PrismaClient();
 export default async function RecipesIndexPage() {
   const recipes = await prisma.recipe.findMany({
     include: {

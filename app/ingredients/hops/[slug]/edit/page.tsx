@@ -4,11 +4,13 @@ import Link from "next/link";
 
 import { Metadata } from "next";
 import { HopForm } from "../../_components";
+import prisma from "@/lib/prisma";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "LNK: Hop Edit",
 };
-const prisma = new PrismaClient();
+//const prisma = new PrismaClient();
 export default async function HopEditPage({
   params,
 }: {
@@ -16,18 +18,16 @@ export default async function HopEditPage({
 }) {
   async function update(formData: FormData) {
     "use server";
-
-    console.log(formData);
-    console.log(formData.entries());
     const data = Object.fromEntries(formData);
-    const d: Partial<Hop> = ["name", "description"].reduce((acc, k) => {
+    const d: Hop = ["name", "description"].reduce((acc, k) => {
       acc[k] = data[k];
       return acc;
     }, {} as any);
-    await prisma.hop.update({
+    const res = await prisma.hop.update({
       where: { slug: params.slug },
-      data: d,
+      data: prisma.hop.addSlugToData(d),
     });
+    redirect(res.urlString);
   }
   const hop = await prisma.hop.findFirst({
     where: { slug: params.slug },

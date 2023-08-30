@@ -25,14 +25,14 @@ model User {
 }
 
 model Recipe {
-  id          Int      @id @default(autoincrement())
-  name        String
-  slug        String
-  description String
-  authorId    Int
-  author      User     @relation(fields: [authorId], references: [id])
-  updatedAt   DateTime @default(now())
-  createdAt   DateTime @default(now())
+  id             Int      @id @default(autoincrement())
+  name           String
+  slug           String
+  description    String
+  authorUsername String
+  author         User     @relation(fields: [authorUsername], references: [username])
+  updatedAt      DateTime @default(now())
+  createdAt      DateTime @default(now())
 }
 
 model Yeast {
