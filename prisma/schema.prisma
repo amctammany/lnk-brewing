@@ -50,6 +50,7 @@ model Fermentable {
   name        String
   slug        String  @unique
   description String?
+  notes       String?
   country     String?
   usage       String?
   power       Int?

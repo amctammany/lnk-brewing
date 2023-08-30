@@ -3,9 +3,11 @@ import { NextResponse } from "next/server";
 import { StyleCategory } from "@prisma/client";
 import hops from "../../data/hops.json";
 import styles from "../../data/styles.json";
+import grains from "../../data/grains.json";
 
 export async function GET(request: Request) {
   await prisma.hop.deleteMany();
+  await prisma.fermentable.deleteMany();
   await prisma.recipe.deleteMany();
   await prisma.style.deleteMany();
   await prisma.user.deleteMany();
@@ -58,6 +60,7 @@ export async function GET(request: Request) {
     })),
   });
 
+  await prisma.fermentable.createMany({ data: grains });
   await prisma.hop.createMany({
     data: hops,
   });
