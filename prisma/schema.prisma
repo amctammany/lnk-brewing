@@ -93,5 +93,6 @@ model Hop {
   purpose           String?
   flavor            String?
   notes             String?
+  substitutesString String[]
   styles            String[]
 }

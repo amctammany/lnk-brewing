@@ -1,5 +1,6 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import hops from "./hops.json";
 
 export async function GET(request: Request) {
   await prisma.hop.deleteMany();
@@ -49,11 +50,7 @@ export async function GET(request: Request) {
   });
 
   await prisma.hop.createMany({
-    data: [
-      { name: "Apollo", slug: "apollo" },
-      { name: "Citra", slug: "citra" },
-      { name: "Mosaic", slug: "mosaic" },
-    ],
+    data: hops,
   });
   return NextResponse.json({ message: "Reseeded DB" });
 }
