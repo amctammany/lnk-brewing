@@ -1,6 +1,6 @@
 export const preferredRegion = "home";
 //export const dynamic = "force-dynamic";
-import { PrismaClient } from "@prisma/client/edge";
+import { PrismaClient } from "@prisma/client";
 import { Box, Paper, Typography } from "@mui/material";
 import Link from "next/link";
 

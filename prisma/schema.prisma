@@ -6,20 +6,22 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("PRISMA_URL") // uses connection pooling
-  //url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider = "postgresql"
+
+  url = env("DATABASE_URL")
 }
 
-model User {
-  id       Int      @id @default(autoincrement())
-  username String   @unique
-  email    String   @unique
-  name     String?
-  Recipe   Recipe[]
+//url       = env("PRISMA_URL") // uses connection pooling
+//url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
+//directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
 
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  email     String   @unique
+  name      String?
   createdAt DateTime @default(now())
+  Recipe    Recipe[]
 }
 
 model Recipe {
@@ -31,6 +33,30 @@ model Recipe {
   author      User     @relation(fields: [authorId], references: [id])
   updatedAt   DateTime @default(now())
   createdAt   DateTime @default(now())
+}
+
+model Yeast {
+  id          Int     @id @default(autoincrement())
+  name        String
+  slug        String
+  description String?
+  country     String?
+  tolerance   Float?
+  attenuation Float?
+}
+
+model Fermentable {
+  id          Int     @id @default(autoincrement())
+  name        String
+  slug        String
+  description String?
+  country     String?
+  usage       String?
+  power       Int?
+  maxUsage    Float?
+  color       Float?
+  potential   Float?
+  stability   String?
 }
 
 model Hop {

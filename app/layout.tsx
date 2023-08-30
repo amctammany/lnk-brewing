@@ -33,7 +33,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
       </head>
-      <body className={inter.variable}>
+      <body>
         <Nav />
         <Box component="main" sx={{ p: 3 }}>
           {children}

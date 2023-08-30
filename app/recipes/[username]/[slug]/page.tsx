@@ -1,8 +1,8 @@
-import { PrismaClient } from "@prisma/client/edge";
+import { PrismaClient } from "@prisma/client";
 import { Box, Typography } from "@mui/material";
 import Link from "next/link";
 
-export const dynamic = "force-dynamic";
+//export const dynamic = "force-dynamic";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -14,11 +14,21 @@ export default async function RecipeDisplayPage({
 }: {
   params: { username: string; slug: string };
 }) {
+  console.log(params);
   const recipe = await prisma.recipe.findFirst({
-    include: { author: true },
+    include: {
+      author: {
+        select: {
+          name: true,
+          username: true,
+        },
+      },
+    },
     where: {
-      author: { username: { equals: params.username } },
-      slug: { equals: params.slug },
+      AND: {
+        author: { username: { equals: params.username } },
+        slug: { equals: params.slug },
+      },
     },
   });
 

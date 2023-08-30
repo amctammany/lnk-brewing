@@ -1,14 +1,20 @@
 // prisma/seed.ts
 
-import { PrismaClient } from "@prisma/client/edge";
+import { PrismaClient } from "@prisma/client";
 //import { links } from '../data/links'
-const prisma = new PrismaClient();
 
+let prisma: any;
 async function main() {
+  prisma = new PrismaClient({
+    datasources: {
+      db: { url: "postgresql://lnk:neipa@localhost:5432/lnk?schema=public" },
+    },
+  });
+  //prisma = new PrismaClient();
   console.log(prisma);
-  await prisma.hop.deleteMany();
-  await prisma.recipe.deleteMany();
-  await prisma.user.deleteMany();
+  //await prisma.hop.deleteMany();
+  //await prisma.recipe.deleteMany();
+  //await prisma.user.deleteMany();
   const user = await prisma.user.create({
     data: {
       name: "Alex",
@@ -23,30 +29,33 @@ async function main() {
       username: "kathy",
     },
   });
-
-  await prisma.recipe.create({
-    data: {
-      name: "Recipe1",
-      description: "Desc",
-      authorId: user.id,
-      slug: "recipe1",
-    },
-  });
-  await prisma.recipe.create({
-    data: {
-      name: "Recipe2",
-      description: "Desc",
-      authorId: user.id,
-      slug: "recipe2",
-    },
-  });
-  await prisma.recipe.create({
-    data: {
-      name: "Recipe3",
-      description: "Desc",
-      authorId: kathy.id,
-      slug: "recipe3",
-    },
+  await prisma.recipe.createMany({
+    data: [
+      {
+        name: "Recipe1",
+        description: "Desc",
+        authorId: user.id,
+        slug: "recipe1",
+      },
+      {
+        name: "Recipe2",
+        description: "Desc",
+        authorId: user.id,
+        slug: "recipe2",
+      },
+      {
+        name: "Recipe3",
+        description: "Desc",
+        authorId: kathy.id,
+        slug: "recipe3",
+      },
+      {
+        name: "First Recipe",
+        description: "Desc",
+        authorId: kathy.id,
+        slug: "first-recipe",
+      },
+    ],
   });
 
   await prisma.hop.createMany({
@@ -59,10 +68,11 @@ async function main() {
 }
 
 main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
+  .then(async () => {
+    if (prisma) await prisma.$disconnect();
   })
-  .finally(async () => {
-    await prisma.$disconnect();
+  .catch(async (e) => {
+    console.error(e);
+    if (prisma) await prisma.$disconnect();
+    process.exit(1);
   });

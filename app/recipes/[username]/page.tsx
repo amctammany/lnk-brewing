@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client/edge";
+import { PrismaClient } from "@prisma/client";
 import { Box, List, ListItem } from "@mui/material";
 import Link from "next/link";
 

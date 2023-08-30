@@ -9,9 +9,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "pnpm run db:generate",
     "db:seed": "prisma db seed",
-    "db:generate": "prisma generate --data-proxy",
+    "db:generate": "prisma generate",
     "db:migrate": "prisma migrate dev --name"
   },
   "dependencies": {
