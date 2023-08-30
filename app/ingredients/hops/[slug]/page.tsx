@@ -3,6 +3,7 @@ import { Box } from "@mui/material";
 import Link from "next/link";
 
 import { Metadata } from "next";
+import { HopDisplay } from "../_components/HopDisplay";
 
 export const metadata: Metadata = {
   title: "LNK: Hop Display",
@@ -19,7 +20,7 @@ export default async function HopDisplayPage({
 
   return (
     <Box>
-      HopDisplay
+      <HopDisplay hop={hop} />
       <Link href="edit">EditHop</Link>
     </Box>
   );

@@ -1,5 +1,13 @@
 import { PrismaClient } from "@prisma/client";
-import { Box } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  List,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
+import ImageIcon from "@mui/icons-material/Image";
 import Link from "next/link";
 
 import { Metadata } from "next";
@@ -14,6 +22,22 @@ export default async function HopsIndexPage() {
   return (
     <Box>
       Hops
+      <List sx={{ bgcolor: "background.paper" }}>
+        {hops.map((hop) => (
+          <ListItemButton
+            href={`/ingredients/hops/${hop.slug}`}
+            component={Link}
+            key={hop.id}
+          >
+            <ListItemAvatar>
+              <Avatar>
+                <ImageIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary={hop.name} secondary={hop.country} />
+          </ListItemButton>
+        ))}
+      </List>
       <Link href="/hops">Hops</Link>
     </Box>
   );
