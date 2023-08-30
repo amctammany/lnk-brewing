@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { HopDisplay } from "../_components/HopDisplay";
 import prisma from "@/lib/prisma";
+import { DataDisplay } from "@/components";
 
 export const metadata: Metadata = {
   title: "LNK: Hop Display",
@@ -21,7 +22,7 @@ export default async function HopDisplayPage({
 
   return (
     <Box>
-      <HopDisplay hop={hop} />
+      <DataDisplay title="HopDisplay" data={hop} />
       <Link href="edit">EditHop</Link>
     </Box>
   );
