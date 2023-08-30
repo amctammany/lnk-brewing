@@ -22,7 +22,7 @@ export default async function HopDisplayPage({
 
   return (
     <Box>
-      <DataDisplay title="HopDisplay" data={hop} />
+      <DataDisplay title={hop?.name} data={hop} />
       <Link href="edit">EditHop</Link>
     </Box>
   );

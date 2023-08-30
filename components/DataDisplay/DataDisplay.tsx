@@ -13,7 +13,7 @@ import Link from "next/link";
 
 export type DataDisplayProps<T extends Object> = {
   title?: string;
-  data: T & { urlString: string };
+  data: (T & { urlString: string }) | null;
 };
 export const DataDisplay = <T extends Object>({
   data,

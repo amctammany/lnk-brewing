@@ -15,15 +15,18 @@ export default async function StyleDisplayPage({
   params: { slug: string };
 }) {
   console.log(params);
-  const style = (await prisma.style.findFirst({
+  const style = await prisma.style.findFirst({
     where: {
       slug: { equals: params.slug },
     },
-  })) || { urlString: "" };
+  });
 
   return (
     <Box>
-      <DataDisplay title="Style" data={style} />
+      <DataDisplay
+        title={`Style: ${style?.identifier} - ${style?.name}`}
+        data={style}
+      />
       <Link href="edit">Edit</Link>
     </Box>
   );
