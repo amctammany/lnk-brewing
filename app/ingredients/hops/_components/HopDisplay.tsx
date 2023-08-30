@@ -9,6 +9,7 @@ import {
   Paper,
 } from "@mui/material";
 import type { Hop } from "@prisma/client";
+import Link from "next/link";
 
 export interface HopDisplayProps {
   hop: Hop | null;
@@ -18,6 +19,7 @@ export const HopDisplay = ({ hop }: HopDisplayProps) => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       HopDisplay!
+      <Link href={`/ingredients/hops/${hop?.slug}/edit`}>Edit</Link>
       <TableContainer sx={{ margin: "auto", maxWidth: 400 }} component={Paper}>
         <Table size="small">
           <TableHead>

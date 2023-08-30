@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { Hop, PrismaClient } from "@prisma/client";
 import { Box } from "@mui/material";
 import Link from "next/link";
 
@@ -14,8 +14,23 @@ export default async function HopEditPage({
 }: {
   params: { slug: string };
 }) {
+  async function update(formData: FormData) {
+    "use server";
+
+    console.log(formData);
+    console.log(formData.entries());
+    const data = Object.fromEntries(formData);
+    const d: Partial<Hop> = ["name", "description"].reduce((acc, k) => {
+      acc[k] = data[k];
+      return acc;
+    }, {} as any);
+    await prisma.hop.update({
+      where: { slug: params.slug },
+      data: d,
+    });
+  }
   const hop = await prisma.hop.findFirst({
-    where: { slug: { equals: params.slug } },
+    where: { slug: params.slug },
   });
 
   if (hop == null) {
@@ -24,7 +39,7 @@ export default async function HopEditPage({
   return (
     <Box>
       HopEditPage
-      <HopForm hop={hop}></HopForm>
+      <HopForm hop={hop} action={update}></HopForm>
       <Link href="edit">EditHop</Link>
     </Box>
   );

@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: true,
+  },
   transpilePackages: ["@mui/system", "@mui/material", "@mui/icons-material"],
   images: {
     domains: ["pbs.twimg.com"],

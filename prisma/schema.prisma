@@ -38,7 +38,7 @@ model Recipe {
 model Yeast {
   id          Int     @id @default(autoincrement())
   name        String
-  slug        String
+  slug        String  @unique
   description String?
   country     String?
   tolerance   Float?
@@ -48,7 +48,7 @@ model Yeast {
 model Fermentable {
   id          Int     @id @default(autoincrement())
   name        String
-  slug        String
+  slug        String  @unique
   description String?
   country     String?
   usage       String?
@@ -62,7 +62,7 @@ model Fermentable {
 model Hop {
   id                Int      @id @default(autoincrement())
   name              String
-  slug              String
+  slug              String   @unique
   description       String?
   country           String?
   usage             String?
