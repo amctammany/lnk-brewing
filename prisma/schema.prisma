@@ -59,6 +59,45 @@ model Fermentable {
   stability   String?
 }
 
+enum StyleCategory {
+  BEER
+  MEAD
+  CIDER
+}
+
+model Style {
+  id            Int           @id @default(autoincrement())
+  name          String
+  slug          String        @unique
+  category      StyleCategory
+  subcategoryId String
+  identifier    String
+  aroma         String
+  appearance    String
+  flavor        String
+  mouthfeel     String
+  comments      String
+  history       String?
+  ingredients   String?
+  comparison    String?
+  examples      String?
+  ibuLow        Float?
+  ibuHigh       Float?
+  ibuFlex       Boolean       @default(false)
+  ogLow         Float?
+  ogHigh        Float?
+  ogFlex        Boolean       @default(false)
+  fgLow         Float?
+  fgHigh        Float?
+  fgFlex        Boolean       @default(false)
+  srmLow        Float?
+  srmHigh       Float?
+  srmFlex       Boolean       @default(false)
+  abvLow        Float?
+  abvHigh       Float?
+  abvFlex       Boolean       @default(false)
+}
+
 model Hop {
   id                Int      @id @default(autoincrement())
   name              String

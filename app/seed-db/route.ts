@@ -1,10 +1,13 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
+import { StyleCategory } from "@prisma/client";
 import hops from "./hops.json";
+import styles from "./styles.json";
 
 export async function GET(request: Request) {
   await prisma.hop.deleteMany();
   await prisma.recipe.deleteMany();
+  await prisma.style.deleteMany();
   await prisma.user.deleteMany();
   const user = await prisma.user.create({
     data: {
@@ -47,6 +50,12 @@ export async function GET(request: Request) {
         slug: "first-recipe",
       },
     ],
+  });
+  await prisma.style.createMany({
+    data: styles.map(({ category, ...style }) => ({
+      category: StyleCategory[category.toUpperCase()],
+      ...style,
+    })),
   });
 
   await prisma.hop.createMany({
