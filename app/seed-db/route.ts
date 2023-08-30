@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
-import { StyleCategory } from "@prisma/client";
+import { Style, Hop, HopUsage, StyleCategory } from "@prisma/client";
 import hops from "../../data/hops.json";
 import styles from "../../data/styles.json";
 import grains from "../../data/grains.json";
@@ -54,15 +54,21 @@ export async function GET(request: Request) {
     ],
   });
   await prisma.style.createMany({
-    data: styles.map(({ category, history, ...style }) => ({
-      category: StyleCategory[category.toUpperCase() as StyleCategory],
-      ...style,
-    })),
+    data: styles.map(
+      ({ category, history, ...style }) =>
+        ({
+          category: StyleCategory[category.toUpperCase() as StyleCategory],
+          ...style,
+        } as Style)
+    ),
   });
 
   await prisma.fermentable.createMany({ data: grains });
   await prisma.hop.createMany({
-    data: hops,
+    data: hops.map(({ usage, ...hop }) => ({
+      usage: HopUsage[usage as HopUsage],
+      ...hop,
+    })),
   });
   return NextResponse.json({ message: "Reseeded DB" });
 }

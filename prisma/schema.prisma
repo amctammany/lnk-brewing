@@ -52,7 +52,6 @@ model Fermentable {
   description String?
   notes       String?
   country     String?
-  usage       String?
   power       Int?
   maxUsage    Float?
   color       Float?
@@ -99,13 +98,19 @@ model Style {
   abvFlex       Boolean       @default(false)
 }
 
+enum HopUsage {
+  Aroma
+  Bittering
+  Dual
+}
+
 model Hop {
-  id                Int      @id @default(autoincrement())
+  id                Int       @id @default(autoincrement())
   name              String
-  slug              String   @unique
+  slug              String    @unique
   description       String?
   country           String?
-  usage             String?
+  usage             HopUsage?
   alpha             Float?
   alphaLow          Float?
   alphaHigh         Float?
